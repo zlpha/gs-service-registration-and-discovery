@@ -133,3 +133,16 @@ Test the end-to-end result by starting the `eureka-service` first and then, once
 Congratulations! You've just used Spring to stand up a Netflix Eureka service registry and to use that registry in a client application.
 
 include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
+
+
+== AWS Test
+```bash
+cd gs-service-registration-and-discovery/complete
+mvn clean package -Dmaven.test.skip
+
+java -jar eureka-service/target/eureka-service-0.0.1-SNAPSHOT.jar
+curl localhost:8761/health
+
+java -jar eureka-client/target/eureka-client-0.0.1-SNAPSHOT.jar
+curl localhost:8080/service-instances/a-bootiful-client
+```
